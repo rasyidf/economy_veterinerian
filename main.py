@@ -96,7 +96,7 @@ if runs:
     col1.markdown(ix)
     col2.markdown(iy)
     st.write(interpretasi)
-    hasil, interpretasi = epd.bc_ratio(TPV_B, TPB_C)
+    hasil, interpretasi = epd.bc_ratio(TPV_B, TPV_C)
     st.markdown("### Nilai")
     st.write(hasil) 
     st.write(interpretasi)
