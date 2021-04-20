@@ -1,2 +1,3 @@
-echo "I love you biru"
+@echo off
+echo        I love you biru  
 streamlit run main.py

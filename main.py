@@ -39,48 +39,44 @@ if pilihan2:
         st.write(hasil)
     else:
         st.markdown(str_isi_semua)
-if pilihan3:
-    xnn = []
-    ynn = []
-    st.markdown("## Nett Present Value\n\n Tuliskan Input Xn dalam koma")
-    xn :  str = st.text_input("Xn (tahun 1, tahun 2, tahun 3, ...)", key="nv_1")
-    yn :  str = st.text_input("Yn (tahun 1, tahun 2, tahun 3, ...)", key="nv_2")
-     
-     
 
-    r = st.number_input("r", key="nv_3")  
- 
-    hari = st.number_input("Hari", value = -1, key="nv_4") 
-    tahun = st.number_input("Tahun", value = -1, key="nv_5")
-
-    runs = st.button("Hitung", key="nv_6")  
-    if runs:
-        xn = xn.replace(" ", "")
-        xnn =[int(x) for x in xn.split(",")] 
-        yn = yn.replace(" ", "")
-        ynn =[int(y) for y in yn.split(",")]
-        hasil, interpretasi, ix, iy = epd.NPV(xnn, ynn, r)
-        st.markdown("## Nilai") 
-        st.write(hasil)
-
-        st.markdown("## Interpretasi") 
-        col1, col2 = st.beta_columns(2) 
-        col1.markdown(ix)  
-        col2.markdown(iy) 
-        st.write(interpretasi)
-    else:
-        st.markdown(str_isi_semua)
+xnn = []
+ynn = []
+st.markdown("## Nett Present Value\n\n Tuliskan Input Xn dalam koma")
+xn :  str = st.text_input("Xn (tahun 1, tahun 2, tahun 3, ...)", key="nv_1")
+yn :  str = st.text_input("Yn (tahun 1, tahun 2, tahun 3, ...)", key="nv_2")
     
-if pilihan4:
-    st.markdown("## B/C Ratio")
-    TPV_B = st.number_input("Benefits")
-    TPB_C = st.number_input("Cost")
-    runs = st.button("Hitung")
-    if runs:
-        hasil, interpretasi = epd.bc_ratio(TPV_B,TPB_C)
-        st.markdown("## Nilai") 
-        st.write(hasil)
-        st.markdown("## Interpretasi") 
-        st.write(interpretasi)
-    else:
-        st.markdown(str_isi_semua)
+tahun = st.number_input("Tahun", key="nv_3", min_value= 1000, max_value=3000, value=2019, step=1)  
+
+r = st.number_input("R", key="nv_7")  
+
+runs = st.button("Hitung", key="nv_6")  
+if runs:
+    xn = xn.replace(" ", "")
+    xnn =[int(x) for x in xn.split(",")] 
+    yn = yn.replace(" ", "")
+    ynn =[int(y) for y in yn.split(",")]
+    hasil, interpretasi, ix, iy = epd.NPV(xnn, ynn, r, year=tahun)
+    st.markdown("## Nilai") 
+    st.write(hasil)
+
+    st.markdown("## Interpretasi") 
+    col1, col2 = st.beta_columns(2) 
+    col1.markdown(ix)  
+    col2.markdown(iy) 
+    st.write(interpretasi)
+else:
+    st.markdown(str_isi_semua)
+    
+st.markdown("## B/C Ratio")
+TPV_B = st.number_input("Benefits")
+TPB_C = st.number_input("Cost")
+runs = st.button("Hitung")
+if runs:
+    hasil, interpretasi = epd.bc_ratio(TPV_B,TPB_C)
+    st.markdown("## Nilai") 
+    st.write(hasil)
+    st.markdown("## Interpretasi") 
+    st.write(interpretasi)
+else:
+    st.markdown(str_isi_semua)
