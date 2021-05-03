@@ -46,8 +46,8 @@ if pilihan2:
         st.markdown(str_isi_semua)
 
 st.markdown("## Nett Present Value [Single]")
-xn:  int = st.number_input("Total V Benefits", key="nnv_1", step=1, min_value=0, max_value=10000000000, value=10000)
-yn:  int = st.number_input("Total V Cost", key="nnv_2", step=1, min_value=0, max_value=10000000000, value=10000)
+xn  = st.number_input("Total V Benefits", key="nnv_1")
+yn  = st.number_input("Total V Cost", key="nnv_2")
 
 hari = st.number_input("Hari", value=-1, key="nnv_4")
 tahun = st.number_input("Tahun", value=-1, key="nnv_5")
