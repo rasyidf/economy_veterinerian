@@ -1,4 +1,48 @@
 import streamlit as st
+from math import factorial 
+
+
+# rumus
+def OddRatio(a, b, c, d):
+    return (a*d)/(b*c)
+
+def RelativeRatio(a, b, c, d):
+    return (a/(a+b))/(c/(c+d))
+
+def AR(a, b, c, d):
+    return (a/(a+b))-(c/(c+d))
+
+def AF(a, b, c, d):
+    return AR(a, b, c, d) / (a/(a+b))
+
+def eAF(a, b, c, d):
+    OR = OddRatio(a, b, c, d)
+    return (OR-1)/OR
+
+# pengujian
+def McNemarChiSquare(a, b, c, d):
+    XX = (b-c)**2 / (b+c)
+    st.write("X^2:",round(XX,2))
+    return XX > 3.84, 'McNemar Chi Square'
+
+def YateChiSquare(a, b, c, d):
+    n = a+b+c+d
+    XX = (abs((a*d)-(b*c))-(0.5*n))**2 * n / ((a+b)*(c+d)*(a+c)*(b+d))
+    st.write("X^2:",round(XX,2))
+    return XX > 3.84, 'Yate Chi Square'
+
+def PearsonChiSquare(a, b, c, d):
+    n = a+b+c+d
+    XX = ((a*d)-(b*c))**2 * n / ((a+b)*(c+d)*(a+c)*(b+d))
+    st.write("X^2:",round(XX,2))
+    return XX > 3.84, 'Pearson Chi Square'
+
+def FischerExactTest(a, b, c, d):
+    n = a+b+c+d
+    P = (factorial(a+c)*factorial(c+d)*factorial(a+b)*factorial(b+d)) / \
+        (factorial(a)*factorial(b)*factorial(c)*factorial(d) * factorial(n))
+    st.write("P:", P)
+    return P < 0.05, 'Fischer Exact Test'
 
 
 class Epid:
@@ -18,7 +62,7 @@ class Epid:
         elif tahun > 0:
             n = tahun
         else:
-            print("tahun atau hari wajib diisi")
+            st.markdown("tahun atau hari wajib diisi")
 
         interpretasi = ""
 
